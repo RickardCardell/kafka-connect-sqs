@@ -167,7 +167,7 @@ For a `source` connector, the minimum actions required are:
 
 ## Run a sink-connector using Docker Compose
 
-Start executing
+Start by building the plugin-jar. It will be accessible for the connector docker.
 ```
 mvn clean package
 ```
