@@ -165,6 +165,51 @@ For a `source` connector, the minimum actions required are:
 
 # Running the Demo
 
+## Run a sink-connector using Docker Compose
+
+Ensure you have `AWS_ACCESS_KEY_ID`, `AWS_REGION` and `AWS_SECRET_ACCESS_KEY` environment variables exported in your shell. Docker Compose will pass these values into the `connect` container.
+
+Use the provided [Docker Compose](https://docs.docker.com/compose) file and run `docker-compose up`.
+
+With the [Kafka Connect REST interface](https://docs.confluent.io/current/connect/references/restapi.html), verify the Lambda sink connector is installed and ready: `curl http://localhost:8083/connector-plugins`.
+
+Next, supply a connector configuration. You can use `config/example_conf.json` as a starting-point. Change the settings accordingly.
+
+```
+curl -XPOST -H 'Content-Type: application/json' http://localhost:8083/connectors -d @config/example_conf.json
+```
+
+
+A few samples of commands towards the rest-api
+```
+# List connectors
+curl  http://localhost:8083/connectors
+
+# Get generic info about connector
+curl http://localhost:8083/connectors/sqs-sink-example-stream
+
+# Get status of connector
+curl http://localhost:8083/connectors/sqs-sink-example-stream/status
+```
+
+### Produce some events
+
+List topics
+```
+kafkacat -b localhost:9092 -L
+```
+
+Produce some events
+```
+kafkacat -b localhost:9092 -t example-stream -K: -P <<EOF
+1:asdasd
+2:dasdas
+EOF
+```
+
+
+## Run the connector using the Confluent Platform
+
 The demo uses the Confluent Platform which can be downloaded here: https://www.confluent.io/download/
 
 You can use either the Enterprise or Community version.
