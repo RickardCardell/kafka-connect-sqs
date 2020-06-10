@@ -167,9 +167,17 @@ For a `source` connector, the minimum actions required are:
 
 ## Run a sink-connector using Docker Compose
 
+Start executing
+```
+mvn clean package
+```
+
 Ensure you have `AWS_ACCESS_KEY_ID`, `AWS_REGION` and `AWS_SECRET_ACCESS_KEY` environment variables exported in your shell. Docker Compose will pass these values into the `connect` container.
 
-Use the provided [Docker Compose](https://docs.docker.com/compose) file and run `docker-compose up`.
+Use the provided [Docker Compose](https://docs.docker.com/compose) file and run
+```
+docker-compose up
+```
 
 With the [Kafka Connect REST interface](https://docs.confluent.io/current/connect/references/restapi.html), verify the Lambda sink connector is installed and ready: `curl http://localhost:8083/connector-plugins`.
 
