@@ -1,0 +1,9 @@
+{ "name": "sqs-sink-example-stream",
+  "config": {
+    "connector.class": "com.nordstrom.kafka.connect.sqs.SqsSinkConnector",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "sqs.queue.url": "https://sqs.<SOME_REGION>.amazonaws.com/<SOME_ACCOUNT>/chirps-q",
+    "topics": "example-stream",
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter"
+  }
+}
